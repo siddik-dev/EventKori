@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <Folder Include="Context\" />
-    <Folder Include="Identity\" />
     <Folder Include="JWT\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
