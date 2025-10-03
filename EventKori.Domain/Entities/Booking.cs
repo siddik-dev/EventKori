@@ -11,7 +11,7 @@ namespace EventKori.Domain.Entities
     {
         public int EventId { get; set; }
         public int ServiceProviderId { get; set; }
-        public int? PricingPackageId { get; set; }
+        public int? PackageId { get; set; }
         public DateTime BookingDate { get; set; } = DateTime.UtcNow;
         public DateTime EventDate { get; set; }
         public decimal TotalAmount { get; set; }
