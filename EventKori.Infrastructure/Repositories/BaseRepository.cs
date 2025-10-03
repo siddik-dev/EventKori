@@ -11,9 +11,9 @@ namespace EventKori.Infrastructure.Repositories
         private readonly EventKoriDbContext _context;
         protected readonly DbSet<T> _entities;
 
-        public BaseRepository(EventKoriDbContext dbContext)
+        public BaseRepository(EventKoriDbContext context)
         {
-            _context = dbContext;
+            _context = context;
             _entities = _context.Set<T>();
         }
 

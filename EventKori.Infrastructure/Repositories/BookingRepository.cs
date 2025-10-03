@@ -8,7 +8,9 @@ namespace EventKori.Infrastructure.Repositories
 {
     public class BookingRepository : BaseRepository<Booking>, IBookingRepository
     {
-        public BookingRepository(EventKoriDbContext context) : base(context) { }
+        public BookingRepository(EventKoriDbContext context) : base(context)
+        {
+        }
 
         public async Task<IReadOnlyList<Booking>> GetByEventIdAsync(int eventId)
         {
