@@ -2,19 +2,12 @@
 using EventKori.Domain.Interfaces;
 using EventKori.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EventKori.Infrastructure.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly EventKoriDbContext _dbContext;
-        private IDbContextTransaction _currentTransaction;
+        private readonly EventKoriDbContext _context;
 
         public IUserRepository Users { get; }
         public IServiceProviderRepository ServiceProviders { get; }
@@ -25,7 +18,7 @@ namespace EventKori.Infrastructure.Repositories
         public IReviewRepository Reviews { get; }
 
         public UnitOfWork(
-            EventKoriDbContext dbContext,
+            EventKoriDbContext context,
             IUserRepository users,
             IServiceProviderRepository serviceProviders,
             IPortfolioItemRepository portfolioItems,
@@ -34,7 +27,7 @@ namespace EventKori.Infrastructure.Repositories
             IBookingRepository bookings,
             IReviewRepository reviews)
         {
-            _dbContext = dbContext;
+            _context = context;
             Users = users;
             ServiceProviders = serviceProviders;
             PortfolioItems = portfolioItems;
@@ -47,7 +40,7 @@ namespace EventKori.Infrastructure.Repositories
         public async Task<int> CompleteAsync()
         {
             // Auto-update timestamps
-            foreach (var entry in _dbContext.ChangeTracker.Entries<BaseEntity>())
+            foreach (var entry in _context.ChangeTracker.Entries<BaseEntity>())
             {
                 if (entry.State == EntityState.Added)
                 {
@@ -59,12 +52,12 @@ namespace EventKori.Infrastructure.Repositories
                 }
             }
 
-            return await _dbContext.SaveChangesAsync();
+            return await _context.SaveChangesAsync();
         }
 
         public void Dispose()
         {
-            _dbContext?.Dispose();
+            _context?.Dispose();
         }
     }
 }
