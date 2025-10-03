@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace EventKori.Infrastructure.Context
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class EventKoriDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        public EventKoriDbContext(DbContextOptions<EventKoriDbContext> options) : base(options)
         {
         }
 

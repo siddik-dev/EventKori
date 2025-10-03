@@ -12,12 +12,12 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 // Configure Entity Framework Core with SQL Server
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+builder.Services.AddDbContext<EventKoriDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Configure Identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddEntityFrameworkStores<EventKoriDbContext>()
     .AddDefaultTokenProviders();
 builder.Services.AddAuthorization();
 

@@ -7,13 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EventKori.Application\EventKori.Application.csproj" />
     <ProjectReference Include="..\EventKori.Domain\EventKori.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="JWT\" />
-    <Folder Include="Repositories\" />
   </ItemGroup>
 
   <ItemGroup>
