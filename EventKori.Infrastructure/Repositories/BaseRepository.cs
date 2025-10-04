@@ -8,7 +8,7 @@ namespace EventKori.Infrastructure.Repositories
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
-        private readonly EventKoriDbContext _context;
+        protected readonly EventKoriDbContext _context;
         protected readonly DbSet<T> _entities;
 
         public BaseRepository(EventKoriDbContext context)
