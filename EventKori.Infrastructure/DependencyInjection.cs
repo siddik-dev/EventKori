@@ -1,8 +1,10 @@
 ﻿using EventKori.Domain.Interfaces;
 using EventKori.Infrastructure.Context;
+using EventKori.Infrastructure.Identity;
 using EventKori.Infrastructure.JWT;
 using EventKori.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,8 +17,14 @@ namespace EventKori.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
+            // Configure Entity Framework Core with SQL Server
             services.AddDbContext<EventKoriDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
+            // Configure Identity
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<EventKoriDbContext>()
+                .AddDefaultTokenProviders();
 
             // Configure JWT
             services.AddAuthentication(options =>
@@ -39,7 +47,9 @@ namespace EventKori.Infrastructure
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetValue<string>("JWT:Key")))
                 };
             });
-            services.AddScoped<TokenService>();
+
+            // Register TokenService
+            services.AddScoped<ITokenService, TokenService>();
 
             // Register Repositories
             services.AddScoped<IUserRepository, UserRepository>();

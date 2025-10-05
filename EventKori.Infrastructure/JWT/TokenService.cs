@@ -7,7 +7,7 @@ using System.Text;
 
 namespace EventKori.Infrastructure.JWT
 {
-    public class TokenService
+    public class TokenService : ITokenService
     {
         private readonly IConfiguration _configuration;
 
