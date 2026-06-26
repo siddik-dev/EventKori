@@ -10,5 +10,8 @@ namespace EventKori.Domain.Interfaces
         Task<IReadOnlyList<Booking>> GetByStatusAsync(BookingStatus status);
         Task<Booking> GetByEventAndProviderAsync(int eventId, int serviceProviderId);
         Task<IReadOnlyList<Booking>> GetBookingsByDateRangeAsync(DateTime startDate, DateTime endDate);
+        Task<Booking> GetBookingWithDetailsAsync(int id);
+        Task<IReadOnlyList<Booking>> GetUpcomingBookingsAsync(int userId);
+        Task<IReadOnlyList<Booking>> GetServiceProviderBookingsByStatusAsync(int serviceProviderId, BookingStatus status);
     }
 }

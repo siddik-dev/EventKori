@@ -10,5 +10,8 @@ namespace EventKori.Domain.Interfaces
         Task<IReadOnlyList<ServiceProvider>> GetTopRatedAsync(int count);
         Task<IReadOnlyList<ServiceProvider>> GetVerifiedProvidersAsync();
         Task<IReadOnlyList<ServiceProvider>> SearchAsync(string searchTerm, string location = null);
+        Task<ServiceProvider> GetWithDetailsAsync(int id);
+        Task<IReadOnlyList<ServiceProvider>> GetFeaturedProvidersAsync(int count);
+        Task UpdateRatingAsync(int serviceProviderId, double newRating, int totalReviews);
     }
 }

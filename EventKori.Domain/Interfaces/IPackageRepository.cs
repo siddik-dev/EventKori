@@ -6,5 +6,7 @@ namespace EventKori.Domain.Interfaces
     {
         Task<IReadOnlyList<Package>> GetByServiceProviderIdAsync(int serviceProviderId);
         Task<IReadOnlyList<Package>> GetPopularPackagesAsync();
+        Task<IReadOnlyList<Package>> GetByPriceRangeAsync(decimal minPrice, decimal maxPrice);
+        Task<Package> GetPackageWithServiceProviderAsync(int id);
     }
 }

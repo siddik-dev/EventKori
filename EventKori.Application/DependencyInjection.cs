@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using EventKori.Application.Interfaces;
+using EventKori.Application.Services;
+using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace EventKori.Application
 {
@@ -6,7 +9,13 @@ namespace EventKori.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            // This method can be used for other application-specific services
+            services.AddScoped<IEventRequestService, EventRequestService>();
+            services.AddScoped<IServiceProviderService, ServiceProviderService>();
+            services.AddScoped<IBookingService, BookingService>();
+            services.AddScoped<IDashboardService, DashboardService>();
+
+            services.AddValidatorsFromAssembly(System.Reflection.Assembly.GetExecutingAssembly());
+
             return services;
         }
     }

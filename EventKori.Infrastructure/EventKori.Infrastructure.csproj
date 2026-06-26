@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EventKori.Domain\EventKori.Domain.csproj" />
+    <ProjectReference Include="..\EventKori.Application\EventKori.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>
