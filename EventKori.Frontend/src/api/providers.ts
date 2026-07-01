@@ -8,21 +8,21 @@ export interface ProviderFilters {
 }
 
 export async function getProviders(filters: ProviderFilters = {}) {
-  const { data } = await http.get<ServiceProvider[]>("/service-providers", { params: filters });
+  const { data } = await http.get<ServiceProvider[]>("service-providers", { params: filters });
   return data;
 }
 
 export async function getFeaturedProviders(count = 6) {
-  const { data } = await http.get<ServiceProvider[]>("/service-providers/featured", { params: { count } });
+  const { data } = await http.get<ServiceProvider[]>("service-providers/featured", { params: { count } });
   return data;
 }
 
 export async function getProvider(id: number) {
-  const { data } = await http.get<ServiceProviderDetail>(`/service-providers/${id}`);
+  const { data } = await http.get<ServiceProviderDetail>(`service-providers/${id}`);
   return data;
 }
 
 export async function createProvider(payload: CreateServiceProvider) {
-  const { data } = await http.post<ServiceProvider>("/service-providers", payload);
+  const { data } = await http.post<ServiceProvider>("service-providers", payload);
   return data;
 }

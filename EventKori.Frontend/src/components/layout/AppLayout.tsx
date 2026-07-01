@@ -2,6 +2,7 @@ import { CalendarCheck, ChevronDown, LayoutDashboard, LogOut, Menu, Search, User
 import { useState } from "react";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/authStore";
+import { API_BASE_URL } from "../../lib/constants";
 import { userTypeLabel } from "../../lib/status";
 import { Button } from "../ui/Button";
 
@@ -105,7 +106,7 @@ export function AppLayout() {
       <footer className="border-t border-line bg-white">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-5 text-sm text-muted sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
           <span>EventKori event planning workspace</span>
-          <span>API: {import.meta.env.VITE_API_BASE_URL ?? "http://localhost:5000/api"}</span>
+          <span>API: {API_BASE_URL}</span>
         </div>
       </footer>
     </div>

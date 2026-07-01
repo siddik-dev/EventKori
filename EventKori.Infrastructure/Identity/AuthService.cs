@@ -59,9 +59,24 @@ public class AuthService : IAuthService
         // Determine role based on UserType
         string role = request.UserType == UserType.ServiceProvider ? "ServiceProvider" : "Customer";
 
-        // Create Domain User
+        var appUser = new ApplicationUser
+        {
+            Id = Guid.NewGuid().ToString(),
+            UserName = request.Email,
+            Email = request.Email
+        };
+
+        IdentityResult result = await _userManager.CreateAsync(appUser, request.Password);
+        if (!result.Succeeded)
+        {
+            string errors = string.Join(", ", result.Errors.Select(e => e.Description));
+            throw new ArgumentException($"Registration failed: {errors}");
+        }
+
+        // Create Domain User with the identity id available immediately
         var domainUser = new User
         {
+            IdentityId = appUser.Id,
             Email = request.Email,
             FirstName = request.FirstName,
             LastName = request.LastName,
@@ -72,31 +87,11 @@ public class AuthService : IAuthService
         await _unitOfWork.Users.AddAsync(domainUser);
         await _unitOfWork.CompleteAsync();
 
-        var appUser = new ApplicationUser
-        {
-            UserName = request.Email,
-            Email = request.Email,
-            DomainUserId = domainUser.Id
-        };
-
-        IdentityResult result = await _userManager.CreateAsync(appUser, request.Password);
-        if (!result.Succeeded)
-        {
-            // rollback domain user if identity fails
-            await _unitOfWork.Users.DeleteAsync(domainUser);
-            await _unitOfWork.CompleteAsync();
-
-            string errors = string.Join(", ", result.Errors.Select(e => e.Description));
-            throw new ArgumentException($"Registration failed: {errors}");
-        }
+        appUser.DomainUserId = domainUser.Id;
+        await _userManager.UpdateAsync(appUser);
 
         // Assign Role
         await _userManager.AddToRoleAsync(appUser, role);
-
-        // Update domain user with identity id
-        domainUser.IdentityId = appUser.Id;
-        await _unitOfWork.Users.UpdateAsync(domainUser);
-        await _unitOfWork.CompleteAsync();
 
         var roles = new List<string> { role };
         string token = _tokenService.GenerateToken(appUser, roles);
