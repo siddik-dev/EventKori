@@ -86,22 +86,19 @@ EventKori.Frontend         -> React + TypeScript SPA (Vite)
 <div align="center">
   
   ### Home Page
-  <img src="https://github.com/user-attachments/assets/638a4952-768d-4e6d-b8ea-cc4b12cbc5d2" alt="Home Page" width="800">
+  <img width="800" alt="home page" src="https://github.com/user-attachments/assets/72dca77b-02fd-4cd1-a620-096e466c7f59" />
   
-  ### Shop Page
-  <img src="https://github.com/user-attachments/assets/e92d78ea-a085-4dfb-96d8-acdd15b9cefd" alt="Shop Page" width="800">
+  ### Login Page
+  <img width="800" alt="login page" src="https://github.com/user-attachments/assets/5d395471-86be-4eec-b9f4-2f18335bdfb8" />
   
-  ### Details Page
-  <img src="https://github.com/user-attachments/assets/85b2ded6-4fb3-4c40-86a9-37c1d4407806" alt="Details Page" width="800">
+  ### Featured Servie Providers Page
+  <img width="800" alt="service providers" src="https://github.com/user-attachments/assets/e01f89ab-0074-4d73-9035-186a1f399d43" />
+
+  ### Create Booking Page
+  <img width="800" alt="create booking" src="https://github.com/user-attachments/assets/3959e064-8dec-407a-b4d2-bbd8b7a8572e" />
   
-  ### View Cart Page
-  <img src="https://github.com/user-attachments/assets/1d206380-974a-47e0-9a05-3c6ff81d4265" alt="View Cart Page" width="800">
-  
-  ### Checkout Page
-  <img src="https://github.com/user-attachments/assets/0588a40c-a7e2-4888-988e-5ce69371db13" alt="Checkout Page" width="800">
-  
-  ### Order Placed Page
-  <img src="https://github.com/user-attachments/assets/ad28fba1-99ae-428e-94e0-dec4f7fc2da9" alt="Order Placed Page" width="800">
+  ### Booking Lists Page
+  <img width="800" alt="booking list" src="https://github.com/user-attachments/assets/3379e778-0c74-4eb5-bc12-4cac6f6eb049" />
 </div>
 
 ---
